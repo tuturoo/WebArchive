@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Moq" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\Application\WebArchive.Application.Settings\WebArchive.Application.Settings.csproj" />
+    <ProjectReference Include="..\..\Source\Core\WebArchive.Core.Settings\WebArchive.Core.Settings.csproj" />
+    <ProjectReference Include="..\..\Source\Infrastructure\WebArchive.Infrastructure.Settings.Json\WebArchive.Infrastructure.Settings.Json.csproj" />
+    <ProjectReference Include="..\..\Source\Infrastructure\WebArchive.Infrastructure.Settings\WebArchive.Infrastructure.Settings.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>
