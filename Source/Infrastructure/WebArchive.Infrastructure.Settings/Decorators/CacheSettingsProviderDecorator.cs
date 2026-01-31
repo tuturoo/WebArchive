@@ -1,13 +1,12 @@
-﻿using Nito.AsyncEx;
-using System.Reflection;
-using WebArchive.Core.Settings.Contracts;
+﻿using WebArchive.Core.Settings.Contracts;
 using WebArchive.Core.Settings.Extensions;
 using WebArchive.Core.Settings.Providers;
 
 namespace WebArchive.Infrastructure.Settings.Decorators
 {
     /// <summary>
-    /// Декоратор для провайдера настроек с использованием в качестве кэша оперативную память
+    /// Декоратор для провайдера настроек с использованием в качестве кэша оперативную память.
+    /// При первичной инициализации использует семафор
     /// </summary>
     public sealed class CacheSettingsProviderDecorator : ISettingsProvider
     {
@@ -31,10 +30,7 @@ namespace WebArchive.Infrastructure.Settings.Decorators
             await _semaphore.WaitAsync(token);
             try
             {
-                if (_currentSettings is null)
-                {
-                    _currentSettings = await _innerProvider.GetAsync(token);
-                }
+                _currentSettings ??= await _innerProvider.GetAsync(token);
 
                 return _currentSettings;
             }

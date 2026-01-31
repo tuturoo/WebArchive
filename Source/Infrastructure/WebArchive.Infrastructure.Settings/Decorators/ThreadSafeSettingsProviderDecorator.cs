@@ -6,6 +6,7 @@ namespace WebArchive.Infrastructure.Settings.Decorators
 {
     /// <summary>
     /// Декоратор для безопасного изменения/чтения настроек
+    /// Использует ReaderWriterLock для операций
     /// </summary>
     public sealed class ThreadSafeSettingsProviderDecorator : ISettingsProvider
     {

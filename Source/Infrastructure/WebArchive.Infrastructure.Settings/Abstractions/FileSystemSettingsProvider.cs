@@ -4,23 +4,34 @@ using WebArchive.Core.Settings.Providers;
 
 namespace WebArchive.Infrastructure.Settings.Abstractions
 {
+    /// <summary>
+    /// Базовый класс для конфига, хранящимся в файловой системе
+    /// </summary>
     public abstract class FileSystemSettingsProvider : ISettingsProvider
     {
-        private readonly string _path;
+        /// <summary>
+        /// Путь к файлу с конфигом
+        /// </summary>
+        protected readonly string ConfigPath;
 
-        protected FileSystemSettingsProvider(string path)
+        protected FileSystemSettingsProvider(string configPath)
         {
-            _path = path;
+            ConfigPath = configPath;
         }
 
-        public Task<ISettings> GetAsync(CancellationToken token = default)
+        public virtual async Task<ISettings> GetAsync(CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            return await DeserializeAsync(
+                content: await File.ReadAllTextAsync(ConfigPath, token),
+                token: token);
         }
 
-        public Task UpdateAsync(ISettings settings, CancellationToken token = default)
+        public virtual async Task UpdateAsync(ISettings settings, CancellationToken token = default)
         {
-            throw new NotImplementedException();
+            await File.WriteAllTextAsync(
+                path: ConfigPath,
+                contents: await SerializeAsync(settings, token),
+                cancellationToken: token);
         }
 
         protected abstract Task<string> SerializeAsync(ISettings settings, CancellationToken token = default);
