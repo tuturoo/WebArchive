@@ -10,7 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Application\WebArchive.Application.Jobs\WebArchive.Application.Jobs.csproj" />
     <ProjectReference Include="..\..\Application\WebArchive.Application.Settings\WebArchive.Application.Settings.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\WebArchive.Infrastructure.Jobs.Tasks\WebArchive.Infrastructure.Jobs.Tasks.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\WebArchive.Infrastructure.Jobs\WebArchive.Infrastructure.Jobs.csproj" />
     <ProjectReference Include="..\..\Infrastructure\WebArchive.Infrastructure.Settings.Json\WebArchive.Infrastructure.Settings.Json.csproj" />
     <ProjectReference Include="..\..\Infrastructure\WebArchive.Infrastructure.Settings\WebArchive.Infrastructure.Settings.csproj" />
   </ItemGroup>
